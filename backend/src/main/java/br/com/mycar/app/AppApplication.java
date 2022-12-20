@@ -1,13 +1,13 @@
 package br.com.mycar.app;
 
+import br.com.mycar.app.entities.Car;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class AppApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AppApplication.class, args);
+	public static void main(String[] args) {SpringApplication.run(AppApplication.class, args);
 	}
 
 }
