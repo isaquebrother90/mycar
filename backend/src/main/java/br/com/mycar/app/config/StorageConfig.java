@@ -25,7 +25,6 @@ public class StorageConfig {
         AmazonS3 build = AmazonS3ClientBuilder.standard()
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .withRegion(region).build();
-        System.out.println(build);
         return build;
 
     }

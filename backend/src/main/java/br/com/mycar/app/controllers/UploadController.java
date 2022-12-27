@@ -7,6 +7,7 @@ import br.com.mycar.app.exceptions.EmptyFileException;
 import br.com.mycar.app.services.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,7 +24,7 @@ public class UploadController {
     }
 
 
-    @PostMapping("/images")
+    @PostMapping(value = "/images", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<UploadResponseDTO> newImageUploadRequest(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) throw new EmptyFileException("Você não enviou nenhum arquivo.");
 

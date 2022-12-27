@@ -40,6 +40,11 @@ public class SecurityConfig {
     };
 
     @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.headers().frameOptions().disable();
         http.cors().and().csrf().disable();
@@ -52,39 +57,4 @@ public class SecurityConfig {
                 });
         return http.build();
     }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-
-    /*@Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        //http.headers().frameOptions().disable();
-        //http.cors().and().csrf().disable();
-        //http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http
-                .httpBasic()
-                .and()
-                .authorizeHttpRequests((auth) -> auth.requestMatchers(HttpMethod.POST, "/carros").permitAll()
-                .anyRequest().authenticated());
-
-        return http.build();
-    }
-
-   @Bean
-    public InMemoryUserDetailsManager userDetailsService() throws Exception {
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        UserDetails user =
-                User.withUsername("spring")
-                .password(encoder.encode("secret"))
-                .build();
-        return new InMemoryUserDetailsManager(user);
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }*/
 }
