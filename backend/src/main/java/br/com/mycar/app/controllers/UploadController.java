@@ -3,6 +3,7 @@ package br.com.mycar.app.controllers;
 import br.com.mycar.app.dtos.UploadImageRequestDTO;
 import br.com.mycar.app.dtos.UploadResponseDTO;
 import br.com.mycar.app.exceptions.ContentTypeException;
+import br.com.mycar.app.exceptions.EmptyFileException;
 import br.com.mycar.app.services.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,21 +24,14 @@ public class UploadController {
 
 
     @PostMapping("/images")
-    public ResponseEntity<UploadResponseDTO> newImageUploadRequest(@RequestParam("file")/* @AllowedFileExtensions({".png", ".jpg"})*/ MultipartFile file) {
+    public ResponseEntity<UploadResponseDTO> newImageUploadRequest(@RequestParam("file") MultipartFile file) {
+        if (file.isEmpty()) throw new EmptyFileException("Você não enviou nenhum arquivo.");
+
+        if(!(file.getOriginalFilename().endsWith(".png") || file.getOriginalFilename().endsWith(".jpg") ||
+                file.getOriginalFilename().endsWith(".jpeg"))) {
+            throw new ContentTypeException("Extensão não permitida.");
+        }
         UploadImageRequestDTO uploadImageRequestDTO = new UploadImageRequestDTO();
-        if(file.getName().endsWith(".png") || file.getName().endsWith(".jpg")){
-            uploadImageRequestDTO.setFileName(org.apache.commons.io.FilenameUtils.getName(file.getOriginalFilename()));
-            return new ResponseEntity<>(storageService.uploadFile(file, uploadImageRequestDTO.toDomain()), HttpStatus.OK);
-        }
-        else {
-            try {
-                System.out.println();
-                throw new ContentTypeException("Extensão não permitida.");
-            } catch (ContentTypeException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        UploadResponseDTO urd = new UploadResponseDTO(null, null);
-        return new ResponseEntity<>(urd, HttpStatus.OK);
+        return new ResponseEntity<>(storageService.uploadFile(file, uploadImageRequestDTO), HttpStatus.OK);
     }
 }
