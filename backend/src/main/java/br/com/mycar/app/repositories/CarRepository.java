@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CarRepository extends JpaRepository<CarEntity, Long> {
+    //TODO To create find car by id or by other entity attribute
 }

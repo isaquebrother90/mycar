@@ -10,8 +10,8 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Getter
+@Setter
 @EqualsAndHashCode
-@Builder
 @Entity
 public class FileReference {
 
@@ -30,22 +30,19 @@ public class FileReference {
 
     private Long contentLength;
 
-    /*@Builder.Default
-    private boolean temp = true;*/
-
     @Enumerated(EnumType.STRING)
     private Type type;
 
-    protected FileReference() {
+    public FileReference() {
     }
 
-    public FileReference(UUID id, OffsetDateTime createdAt, String name, String contentType,
+    public FileReference(String name, String contentType,
                          Long contentLength, Type type) {
         Objects.requireNonNull(name);
+        Objects.requireNonNull(contentType);
+        Objects.requireNonNull(contentLength);
         Objects.requireNonNull(type);
 
-        this.id = id;
-        this.createdAt = createdAt;
         this.name = name;
         this.contentType = contentType;
         this.contentLength = contentLength;
@@ -53,24 +50,14 @@ public class FileReference {
     }
 
     public String getPath() {
-        return this.id + "/" + this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        return this.id + "/" + this.name + "." + this.contentType.substring(6);
     }
 
     @Getter
     @AllArgsConstructor
     public enum Type {
-        DOCUMENT(false),
-        IMAGE(true);
+        DOCUMENT,
+        IMAGE;
 
-        private final boolean publicAcessible;
     }
-
-    public boolean isPublicAccessible() {
-        return this.type.isPublicAcessible();
-    }
-
 }

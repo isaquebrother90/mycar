@@ -15,37 +15,37 @@ public class GlobalExceptionController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ProblemDetail handleAllUncaughtException(Exception e) {
-        log.error("Ocorreu um erro desconhecido", e);
+        log.error("An unknown error has occurred.", e);
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR,
                 e.getMessage());
         problemDetail.getStatus();
         problemDetail.setType(URI.create("http://localhost:8080"));
-        problemDetail.setTitle("Bad request");
-        problemDetail.setDetail("Ops! Ocorreu um erro desconhecido");
+        problemDetail.setTitle("Internal server error");
+        problemDetail.setDetail("An unknown error has occurred.");
         return problemDetail;
     }
 
     @ExceptionHandler(ContentTypeException.class)
     public ProblemDetail handleContentTypeException(ContentTypeException e) {
-        log.error("Extensão de arquivo inválida", e);
+        log.error("Invalid file extension", e);
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST,
                 e.getMessage());
         problemDetail.getStatus();
         //problemDetail.setType(URI.create("http://localhost:8080"));
         problemDetail.setTitle("Bad request");
-        problemDetail.setDetail("Ops! Extensão não permitida. Envie arquivos nos formatos JPG, PNG ou JPEG.");
+        problemDetail.setDetail("extension not allowed\n. Send files with extensions: JPG, PNG or JPEG.");
         return problemDetail;
     }
 
     @ExceptionHandler(EmptyFileException.class)
     public ProblemDetail handleEmptyFileException(EmptyFileException e) {
-        log.error("Você não enviou nenhum arquivo.", e);
+        log.error("You have not uploaded any files.", e);
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST,
                 e.getMessage());
         problemDetail.getStatus();
         problemDetail.setType(URI.create("http://localhost:8080"));
         problemDetail.setTitle("Bad request");
-        problemDetail.setDetail("É necessário enviar algum arquivo. Envie arquivos nos formatos JPG, PNG ou JPEG.");
+        problemDetail.setDetail("It is necessary to send some file. Send files in JPG, PNG or JPEG formats.");
         return problemDetail;
     }
 }

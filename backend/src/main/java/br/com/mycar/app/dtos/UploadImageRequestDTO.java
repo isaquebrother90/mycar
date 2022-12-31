@@ -2,31 +2,29 @@ package br.com.mycar.app.dtos;
 
 import br.com.mycar.app.entities.FileReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class UploadImageRequestDTO {
     @NotBlank
-    //@AllowedFileExtensions({"png","jpg"})
-    @JsonIgnore
+    @JsonProperty("fileName")
     private String fileName;
 
     @NotBlank
+    @JsonProperty("imageBase64")
+    private String imageBase64;
+
+    @NotBlank
+    @JsonProperty("contentType")
     private String contentType;
 
-    //@NotNull
     @Min(1)
-    @JsonIgnore
+    @JsonProperty("contentLength")
     private Long contentLength;
 
-    public FileReference toDomain() {
-        return FileReference.builder()
-                .name(this.fileName)
-                .contentType(this.contentType)
-                .contentLength(this.contentLength)
-                .type(FileReference.Type.IMAGE)
-                .build();
-    }
 }
