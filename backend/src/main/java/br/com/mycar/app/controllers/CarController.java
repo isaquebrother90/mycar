@@ -1,7 +1,7 @@
 package br.com.mycar.app.controllers;
 
-import br.com.mycar.app.dtos.CarRequestDTO;
-import br.com.mycar.app.dtos.CarResponseDTO;
+import br.com.mycar.app.dtos.car.CarRequestDTO;
+import br.com.mycar.app.dtos.car.CarResponseDTO;
 import br.com.mycar.app.services.CarService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

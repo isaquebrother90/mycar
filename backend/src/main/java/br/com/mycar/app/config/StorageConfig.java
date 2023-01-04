@@ -16,6 +16,7 @@ public class StorageConfig {
 
     @Value("${cloud.aws.credentials.secret-key}")
     private String accessSecret;
+
     @Value("${cloud.aws.region.static}")
     private String region;
 
@@ -27,6 +28,5 @@ public class StorageConfig {
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .withRegion(region).build();
         return build;
-
     }
 }

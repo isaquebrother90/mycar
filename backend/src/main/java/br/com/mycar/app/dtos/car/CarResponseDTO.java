@@ -1,4 +1,4 @@
-package br.com.mycar.app.dtos;
+package br.com.mycar.app.dtos.car;
 
 import br.com.mycar.app.abstracts.AbstractVehicle;
 import br.com.mycar.app.entities.FileReference;
@@ -7,7 +7,6 @@ import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.math.BigDecimal;
 
 @Data
