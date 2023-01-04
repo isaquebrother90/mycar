@@ -9,8 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class AppApplication {
 
 	public static void main(String[] args) {SpringApplication.run(AppApplication.class, args);
-		//TODO To development authorization with JWT
-		//TODO To create simple html for test authentication and authorizazion
+		//TODO To implement refresh in JWT token
+		//TODO To create simple html for interface test with authentication and authorization
 	}
 
 }

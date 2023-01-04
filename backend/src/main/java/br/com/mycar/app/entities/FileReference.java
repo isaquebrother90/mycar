@@ -1,10 +1,10 @@
 package br.com.mycar.app.entities;
 
-import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
+import jakarta.persistence.*;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.UUID;

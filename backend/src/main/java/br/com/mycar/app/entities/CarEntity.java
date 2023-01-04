@@ -1,7 +1,6 @@
 package br.com.mycar.app.entities;
 
 import br.com.mycar.app.abstracts.AbstractVehicle;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 

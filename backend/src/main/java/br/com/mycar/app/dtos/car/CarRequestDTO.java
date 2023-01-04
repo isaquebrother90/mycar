@@ -1,13 +1,13 @@
-package br.com.mycar.app.dtos;
+package br.com.mycar.app.dtos.car;
 
 import br.com.mycar.app.abstracts.AbstractVehicle;
+import br.com.mycar.app.dtos.UploadImageRequestDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
 import java.math.BigDecimal;
 
 @Data

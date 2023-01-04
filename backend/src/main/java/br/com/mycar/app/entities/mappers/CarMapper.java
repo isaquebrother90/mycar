@@ -1,6 +1,6 @@
 package br.com.mycar.app.entities.mappers;
 
-import br.com.mycar.app.dtos.CarResponseDTO;
+import br.com.mycar.app.dtos.car.CarResponseDTO;
 import br.com.mycar.app.entities.CarEntity;
 import org.springframework.stereotype.Component;
 

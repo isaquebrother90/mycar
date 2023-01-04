@@ -1,7 +1,7 @@
 package br.com.mycar.app.services;
 
-import br.com.mycar.app.dtos.CarRequestDTO;
-import br.com.mycar.app.dtos.CarResponseDTO;
+import br.com.mycar.app.dtos.car.CarRequestDTO;
+import br.com.mycar.app.dtos.car.CarResponseDTO;
 import br.com.mycar.app.entities.CarEntity;
 import br.com.mycar.app.entities.FileReference;
 import br.com.mycar.app.entities.UserEntity;
@@ -11,9 +11,9 @@ import br.com.mycar.app.exceptions.EmptyFileException;
 import br.com.mycar.app.repositories.CarRepository;
 import br.com.mycar.app.repositories.FileReferenceRepository;
 import br.com.mycar.app.repositories.UserRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import java.util.Optional;
 
 @Service
